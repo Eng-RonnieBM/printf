@@ -6,7 +6,7 @@ int _printf(const char *format, ...);
 int main(void)
 {
 //    printf("%05d",156);
-    _printf("Hola %s mundo", "bendito");
+    _printf("Hola %s mundo\n", "bendito");
 }
 
 int _printf(const char *format, ...)
