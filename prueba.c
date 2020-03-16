@@ -6,7 +6,7 @@ int _printf(const char *format, ...);
 int main(void)
 {
 //    printf("%05d",156);
-    _printf("Hola %s mundo\n", "bendito");
+	_printf("Hola %c mundo\n", 'a');
 }
 
 int _printf(const char *format, ...)
@@ -24,18 +24,18 @@ int _printf(const char *format, ...)
                 case '%':
                 switch(format[i + 1])
                     {
-			    //case 'c':
-			    //write(1, va_arg(args, int*), 1);
+			    case 'c':
+			    write(1, va_arg(args, int*), 1);
+			    i++;
+			    break;
+
+			    //case 's':
+			    //string = va_arg(args, char*);
+			    // while (string[j] != '\0')
+                            //j++;
+			    //write(1, string, j);
 			    //i++;
 			    //break;
-
-                        case 's':
-                        string = va_arg(args, char*);
-                        while (string[j] != '\0')
-                            j++;
-                        write(1, string, j);
-                        i++;
-                        break;
 
                     }
                 break;
