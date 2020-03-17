@@ -1,4 +1,5 @@
 #include "holberton.h"
+
 /**
 *_printf - print all types
 *@format: pointer to a string
