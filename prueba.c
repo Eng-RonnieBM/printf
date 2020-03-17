@@ -1,17 +1,19 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdarg.h>
+
 int _printf(const char *format, ...);
 
 int main(void)
 {
 //    printf("%05d",156);
-	_printf("Hola %c mundo\n", 'a');
+        _printf("Hola %c mundo %s.\n", 'a',"hola");
 }
+
 
 int _printf(const char *format, ...)
 {
-    char *character;
+    int *character;
     char *string;
     int j = 0;
     va_list args;
@@ -24,18 +26,20 @@ int _printf(const char *format, ...)
                 case '%':
                 switch(format[i + 1])
                     {
-			    case 'c':
-			    write(1, va_arg(args, int*), 1);
-			    i++;
-			    break;
+                            case 'c':
+                            character = va_arg(args, int*);
+                            //printf("%c", va_arg(args, int));
+                            write(1, &character, 1);
+                            i++;
+                            break;
 
-			    //case 's':
-			    //string = va_arg(args, char*);
-			    // while (string[j] != '\0')
-                            //j++;
-			    //write(1, string, j);
-			    //i++;
-			    //break;
+                            case 's':
+                            string = va_arg(args, char*);
+                            while (string[j] != '\0')
+                            j++;
+                            write(1, string, j);
+                            i++;
+                            break;
 
                     }
                 break;
@@ -46,4 +50,4 @@ int _printf(const char *format, ...)
         i++;
         }
     va_end(args);
-}
+}  
