@@ -34,14 +34,16 @@ int _printf(const char *format, ...)
 				}
 				j++;
 			}
+			if (j >= 3)
+				write(1, "%", 1);
 			break;
 
 		default:
 			write(1, format + i, 1);
-			k++;
+		k++;
 		}
 		i++;
 	}
 	va_end(args);
-	return (k - 1);
+	return (k);
 }

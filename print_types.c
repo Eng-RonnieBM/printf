@@ -10,8 +10,7 @@ int print_c(va_list args)
 {
 	int *letter = va_arg(args, int*);
 
-	write(1, &letter, 1);
-	return (1);
+	return (write(1, &letter, 1));
 }
 
 
@@ -33,12 +32,10 @@ int print_s(va_list args)
 
 /**
  *print_p - print percent
- *@args: arguments
  *Return: a integer
  */
 
-int print_p(va_list args)
+int print_p(void)
 {
-	write(1, "%", 1);
-	return (1);
+	return (write(1, "%", 1));
 }
