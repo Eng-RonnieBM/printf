@@ -15,8 +15,10 @@ int _printf(const char *format, ...)
 		{"s", print_s},
 		{"%", print_p},
 		};
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
-	while (format != NULL && format[i] != '\0')
+	while (format[i] != '\0')
 	{
 		switch (format[i])
 		{
