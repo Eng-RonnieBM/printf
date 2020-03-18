@@ -1,4 +1,7 @@
+#include <stdarg.h>
 #include "holberton.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  *print_c - print a character
@@ -49,4 +52,25 @@ int print_p(va_list args)
 	p = va_arg(args, char *);
 	write(1, p, sizeof(char));
 		return (0);
+}
+
+/**
+ * print_d - function parameter to print a digit.
+ * @args: parameter to print a digit.
+ * Return: returns a string.
+ */
+int print_d(va_list args)
+{
+	int d;
+	char *ptr;
+	int size;
+
+	ptr = 0;
+
+	d = (va_arg(args, int));
+	ptr = itoa_p(d);
+	size = _strlen(ptr);
+	write(1, ptr, size);
+	free(ptr);
+	return (1);
 }
