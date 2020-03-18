@@ -5,12 +5,15 @@
  *@args: arguments
  *Return: a integer
  */
-
 int print_c(va_list args)
 {
-	int *letter = va_arg(args, int*);
+	char c;
 
-	return (write(1, &letter, 1));
+	c = (va_arg(args, int));
+	if (c == '\0')
+		return (0);
+	write(1, &c, sizeof(c));
+	return (1);
 }
 
 
@@ -19,23 +22,30 @@ int print_c(va_list args)
  *@args: arguments
  *Return: a integer
  */
-
 int print_s(va_list args)
 {
-	char *string = va_arg(args, char*);
-	int j = 0;
+	char *s;
+	int i;
 
-	while (string[j] != '\0')
-		j++;
-	return (write(1, string, j));
+	i = 0;
+	s = va_arg(args, char *);
+	if (s == NULL)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	write(1, s, i);
+		return (i);
 }
 
 /**
- *print_p - print percent
- *Return: a integer
+ * print_p - print percent
+ * Return: a integer
  */
-
 int print_p(void)
 {
-	return (write(1, "%", 1));
+	char *p;
+
+	p = va_arg(args, char *);
+	write(1, p, sizeof(char));
+		return (0);
 }

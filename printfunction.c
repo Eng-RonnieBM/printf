@@ -1,46 +1,47 @@
 #include "holberton.h"
 
 /**
-*_printf - print all types
-*@format: pointer to a string
-*Return: an integer
-*/
-
+ * _printf - print all types
+ * @format: pointer to a string
+ * Return: an integer
+ */
 int _printf(const char *format, ...)
 {
-	int i = 0, j = 0, k = 0;
-	va_list args;
 	caller functions[] = {
-		{"c", print_c},
-		{"s", print_s},
-		{"%", print_p},
+		{"c", print_c}, {"s", print_s},
+		{"%", print_p}, {NULL, NULL}
 		};
+	va_list args;
+	unsigned int i = 0;
+	unsigned int j = 0;
+	int k;
+
+	va_start(args, format);
+	k = 0;
+
 	if (format == NULL)
 		return (-1);
-	va_start(args, format);
 	while (format[i] != '\0')
 	{
-		switch (format[i])
+		if (format[i] == '%')
 		{
-		case '%':
 			j = 0;
-			while (j < 3)
+			while (functions[j].character != NULL)
 			{
-				if (format[i + 1] == *functions[j].character)
+				if (format[i + 1] == *(functions[j].character))
 				{
-					k += functions[j].ptrfunc(args);
-					i++;
+					k += (functions[j].ptrfunc(args));
+					i += 1;
 					break;
 				}
+				else
 				j++;
 			}
-			if (j >= 3)
-				write(1, "%", 1);
-			break;
-
-		default:
-			write(1, format + i, 1);
-		k++;
+		}
+		else
+		{
+			_putchar(format[i]);
+			num_printed += 1;
 		}
 		i++;
 	}
