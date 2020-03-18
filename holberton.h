@@ -23,5 +23,8 @@ int print_c(va_list args);
 int print_s(va_list args);
 int print_p(va_list args);
 int _putchar(char x);
+char *itoa_p(int);
+int _strlen(char *s);
+void rev_string(char *s);
 
 #endif
