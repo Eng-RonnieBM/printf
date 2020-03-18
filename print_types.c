@@ -39,9 +39,10 @@ int print_s(va_list args)
 
 /**
  * print_p - print percent
+ *@args: argument
  * Return: a integer
  */
-int print_p(void)
+int print_p(va_list args)
 {
 	char *p;
 
