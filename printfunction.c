@@ -41,7 +41,7 @@ int _printf(const char *format, ...)
 		else
 		{
 			_putchar(format[i]);
-			num_printed += 1;
+			k += 1;
 		}
 		i++;
 	}
