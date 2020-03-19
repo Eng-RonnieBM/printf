@@ -1,47 +1,73 @@
 #include "holberton.h"
 /**
- * _printf - print all types
- * @format: pointer to a string
- * Return: an integer
+ * _printf - print all types.
+ * @format: pointer to a string.
+ * Return: an integer.
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, j = 0, k = 0;
-	va_list args;
+	va_list list;
+	int k;
+
 	caller functions[] = {
-		{"c", print_c}, {"s", print_s}, {"%", print_p}
+		{"c", print_c},
+		{"s", print_s},
+		{"d", print_di},
+		{"i", print_di},
 	};
-	va_start(args, format);
+
 	if (format == NULL)
 		return (-1);
-	while (format[i] != '\0')
+	va_start(list, format);
+		k = auxiliar(format, list, functions);
+	va_end(list);
+	return (k);
+}
+
+/**
+ * auxiliar - it returns a string to _printf function.
+ * @format: the string passed.
+ * @args: arguments passed.
+ * @functions: a pointer to a struct.
+ * Return: an integer.
+ */
+int auxiliar(const char *format, va_list args, caller *functions)
+{
+	int i = 0, j = 0, k = 0;
+
+	while (format[i] != '\0' && format != NULL)
 	{
-		switch (format[i])
+		if (format[i] == '%' && format[i + 1] == '\0')
+			return (-1);
+		if (format[i] == '%' && (format[i + 1] == ' ' || format[i + 1] != '%'))
 		{
-		case '%':
-			j = 0;
-			while (j < 3)
+			if (format[i + 1] == ' ')
 			{
-				if (format[i + 1] == *functions[j].character)
+				while (format[i + 1] == ' ')
+					i++;
+			}
+			while (j < 4)
+			{
+				if (format[i + 1] == functions[j].character[0])
 				{
 					k += functions[j].ptrfunc(args);
 					i++;
 					break;
-				}
-				if (format[i + 1] == '\0')
-					return (-1);
-				j++;
+				} j++;
 			}
-			if (format[i + 1] != '\0')
-				write(1, format[i + 1], 1);
-			break;
-
-		default:
-			write(1, format + i, 1);
-			k++;
+			if (j == 4)
+				k += _putchar(format[i]);
 		}
-		i++;
+		else if (format[i] == '%' && format[i + 1] == '%')
+		{
+			k += _putchar('%');
+			i++;
+		}
+		else
+		{
+			k += _putchar(format[i]);
+		}
+		j = 0, i++;
 	}
-	va_end(args);
 	return (k);
 }
