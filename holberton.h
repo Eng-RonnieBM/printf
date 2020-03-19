@@ -1,4 +1,4 @@
-#ifndef _PRINTFFUNC__
+#ifndef _PRINTFFUNC_
 #define _PRINTFFUNC_
 
 #include <stdio.h>
@@ -7,11 +7,10 @@
 #include <unistd.h>
 
 /**
- * struct pf - structure used in printf function.
+ * struct call - structure used in printf function.
  * @character: parameter used for pointer char.
  * @ptrfunc: parameter used for function type.
  */
-
 typedef struct call
 {
 	char *character;
@@ -21,10 +20,8 @@ typedef struct call
 int _printf(const char *format, ...);
 int print_c(va_list args);
 int print_s(va_list args);
-int print_p(va_list args);
+int print_di(va_list args);
 int _putchar(char x);
-char *itoa_p(int);
-int _strlen(char *s);
-void rev_string(char *s);
+int auxiliar(const char *format, va_list args, caller *functions);
 
 #endif
