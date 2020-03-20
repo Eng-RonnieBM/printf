@@ -7,11 +7,11 @@
 
 ### files contained in the project:
 
-	 _putchar.c			"It's a function to print a character using write."
-	 holberton.h		 "This is a static library containing prototypes and directives."
+	 _putchar.c		"It's a function to print a character using write."
+	 holberton.h		"This is a static library containing prototypes and directives."
 	 man_3_printf		"This is our function manual v.0.0.1." 
 	 print_types.c		"This file contains the different print types operations."
-	 printfunction.c		"This file contains predefined operation <callers>."
+	 printfunction.c	"This file contains predefined operation <callers>."
 
 ### How to compile:
 
